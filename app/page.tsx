@@ -1,7 +1,13 @@
+import Footer from "@/components/footer";
+import HeroSection from "@/components/home/hero-section";
+import Navbar from "@/components/home/navbar";
+
 export default function Home() {
   return (
     <div>
-      <h1>This is Pramis</h1>
+      <Navbar />
+      <HeroSection />
+      <Footer />
     </div>
   );
 }
