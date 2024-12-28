@@ -1,3 +1,6 @@
+import Footer from "@/components/home/footer";
+import Navbar from "@/components/home/navbar";
+
 export const metadata = {
   title: "Auth | KalaChhetra",
   description:
@@ -9,5 +12,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <main>{children}</main>;
+  return (
+    <div>
+      <Navbar />
+      {children}
+      <Footer />
+    </div>
+  );
 }

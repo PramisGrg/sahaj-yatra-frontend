@@ -57,13 +57,13 @@ const SignInDropdown = () => {
           <div className="flex flex-col p-4 space-y-2 w-40">
             <Link
               className="hover:bg-accent hover:text-accent-foreground p-1 rounded-sm"
-              href="/"
+              href="/user/register"
             >
               As User
             </Link>
             <Link
               className="hover:bg-accent hover:text-accent-foreground p-1 rounded-sm"
-              href="/busowner/login"
+              href="/busowner/register"
             >
               As Busowner
             </Link>

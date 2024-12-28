@@ -7,6 +7,7 @@ export default function Home() {
     <div>
       <Navbar />
       <HeroSection />
+      <div className="bg-red-400 h-screen"></div>
       <Footer />
     </div>
   );

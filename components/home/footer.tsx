@@ -4,14 +4,14 @@ import MaxWidthContainer from "../layouts/max-width-container";
 const Footer = () => {
   return (
     <MaxWidthContainer className="md:py-10 py-10 border-t">
-      <div className="grid grid-cols-1 gap-20 md:grid-cols-2">
+      <footer className="grid grid-cols-1 gap-20 md:grid-cols-2">
         <div>
           <h1 className="font-bold text-2xl">SAHAJ YATRA</h1>
           <p className="text-sm">A product by Pramis Gurung</p>
         </div>
         <SocialsTechUsed />
         <BottomFooter />
-      </div>
+      </footer>
     </MaxWidthContainer>
   );
 };
