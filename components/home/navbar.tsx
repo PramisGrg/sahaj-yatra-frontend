@@ -63,7 +63,7 @@ const SignInDropdown = () => {
             </Link>
             <Link
               className="hover:bg-accent hover:text-accent-foreground p-1 rounded-sm"
-              href="/"
+              href="/busowner/login"
             >
               As Busowner
             </Link>
