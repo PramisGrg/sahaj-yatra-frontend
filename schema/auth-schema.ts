@@ -16,3 +16,8 @@ export const registerUserSchema = z.object({
     .min(3, { message: "enter a valid citizenship number" }),
   password: z.string().min(3, { message: "enter a valid password" }),
 });
+
+export const loginSchema = z.object({
+  email: z.string().email({ message: "enter a valid email" }),
+  password: z.string().min(3, { message: "enter a valid password" }),
+});
