@@ -13,16 +13,37 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useRegisterUser } from "@/services/tanstack-queries/auth-queries";
+import { toast } from "sonner";
+import { AxiosError } from "axios";
+import { useRouter } from "next/navigation";
 
-type TregisterUserSchema = z.infer<typeof registerUserSchema>;
+export type TregisterUserSchema = z.infer<typeof registerUserSchema>;
 
 const Page = () => {
   const form = useForm<TregisterUserSchema>({
     resolver: zodResolver(registerUserSchema),
   });
 
+  const registerUser = useRegisterUser();
+
+  const router = useRouter();
+
   const onSubmit = (values: TregisterUserSchema) => {
-    console.log(values);
+    registerUser.mutate(values, {
+      onSuccess: (data) => {
+        toast.success(data.message);
+        router.push(`/login?${new URLSearchParams({ userType: "User" })}`);
+      },
+      onError: (error) => {
+        if (error instanceof AxiosError) {
+          toast.error(error.response?.data.error);
+        } else {
+          toast.error("unexpected error has occured");
+        }
+      },
+    });
+    form.reset();
   };
 
   return (

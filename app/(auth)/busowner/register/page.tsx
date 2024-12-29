@@ -13,16 +13,38 @@ import { registerBusOwnerSchema } from "@/schema/auth-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { FormProvider, useForm } from "react-hook-form";
+import { useRegisterBusOwner } from "@/services/tanstack-queries/auth-queries";
+import { toast } from "sonner";
+import { AxiosError } from "axios";
+import { useRouter } from "next/navigation";
 
-type TRegisterBusOwnerSchema = z.infer<typeof registerBusOwnerSchema>;
+export type TRegisterBusOwnerSchema = z.infer<typeof registerBusOwnerSchema>;
 
 const Page = () => {
   const form = useForm<TRegisterBusOwnerSchema>({
     resolver: zodResolver(registerBusOwnerSchema),
   });
 
+  const registerBusOwner = useRegisterBusOwner();
+
+  const router = useRouter();
+
   const onSubmit = (values: TRegisterBusOwnerSchema) => {
     console.log(values);
+    registerBusOwner.mutate(values, {
+      onSuccess: (data) => {
+        toast.success(data.message);
+        router.push(`/login?${new URLSearchParams({ userType: "Bus Owner" })}`);
+      },
+      onError: (error) => {
+        if (error instanceof AxiosError) {
+          toast.error(error.response?.data.error);
+        } else {
+          toast.error("unexpected error has occured");
+        }
+      },
+    });
+    form.reset();
   };
 
   return (
