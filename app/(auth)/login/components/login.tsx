@@ -14,19 +14,79 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { useSearchParams } from "next/navigation";
+import {
+  useLoginBusOwner,
+  useLoginSuperAdmin,
+  useLoginUser,
+} from "@/services/tanstack-queries/auth-queries";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { AxiosError } from "axios";
+import Cookies from "js-cookie";
 
-type TLoginSchema = z.infer<typeof loginSchema>;
+export type TLoginSchema = z.infer<typeof loginSchema>;
 
 const Login = () => {
   const searchParams = useSearchParams();
   const params = searchParams.get("userType");
+
+  const router = useRouter();
+
+  const loginUser = useLoginUser();
+  const loginBusOwner = useLoginBusOwner();
+  const loginSuperAdmin = useLoginSuperAdmin();
 
   const form = useForm<TLoginSchema>({
     resolver: zodResolver(loginSchema),
   });
 
   const onSubmit = (values: TLoginSchema) => {
-    console.log(values);
+    if (params === "User") {
+      loginUser.mutate(values, {
+        onSuccess: (data) => {
+          toast.success(data.message);
+          Cookies.set("token", data.token);
+          router.push("/dashboard/user");
+        },
+        onError: (error) => {
+          if (error instanceof AxiosError) {
+            toast.error(error.response?.data.error);
+          } else {
+            toast.error("unexpected error has occured");
+          }
+        },
+      });
+    } else if (params === "Bus Owner") {
+      loginBusOwner.mutate(values, {
+        onSuccess: (data) => {
+          toast.success(data.message);
+          Cookies.set("token", data.token);
+          router.push("/dashboard/busOwner");
+        },
+        onError: (error) => {
+          if (error instanceof AxiosError) {
+            toast.error(error.response?.data.error);
+          } else {
+            toast.error("unexpected error has occured");
+          }
+        },
+      });
+    } else {
+      loginSuperAdmin.mutate(values, {
+        onSuccess: (data) => {
+          toast.success(data.message);
+          Cookies.set("token", data.token);
+          router.push("/dashboard/superAdmin");
+        },
+        onError: (error) => {
+          if (error instanceof AxiosError) {
+            toast.error(error.response?.data.error);
+          } else {
+            toast.error("unexpected error has occured");
+          }
+        },
+      });
+    }
   };
 
   return (
@@ -41,12 +101,12 @@ const Login = () => {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <FormField
                 control={form.control}
-                name="email"
+                name="phoneNumber"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>Phone number</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter your email" {...field} />
+                      <Input placeholder="Enter your phone number" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
