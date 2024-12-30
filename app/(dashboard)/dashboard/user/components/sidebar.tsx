@@ -1,9 +1,8 @@
 import {
-  Calendar,
   ChevronUp,
+  MapPin,
   Home,
-  Inbox,
-  Search,
+  DollarSign,
   Settings,
   User2,
 } from "lucide-react";
@@ -31,23 +30,19 @@ import Link from "next/link";
 const items = [
   {
     title: "Home",
-    url: "#",
+    url: "/dashboard/user",
     icon: Home,
   },
   {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
+    title: "Location",
+    url: "/dashboard/user/location",
+    icon: MapPin,
   },
+
   {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
+    title: "Transaction",
+    url: "/dashboard/user/transaction",
+    icon: DollarSign,
   },
   {
     title: "Settings",
