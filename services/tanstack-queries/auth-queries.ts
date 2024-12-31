@@ -1,5 +1,5 @@
-import { useMutation } from "@tanstack/react-query";
-import { axiosInstance } from "../axios/axios";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { axiosAuthInstance, axiosInstance } from "../axios/axios";
 import { TregisterUserSchema } from "@/app/(auth)/user/register/page";
 import { TRegisterBusOwnerSchema } from "@/app/(auth)/busowner/register/page";
 import { TSuperadminLoginSchema } from "@/app/(auth)/superadmin/login/page";
@@ -84,6 +84,16 @@ export const useLoginSuperAdmin = () => {
       } else {
         toast.error("unexpected error has occured");
       }
+    },
+  });
+};
+
+export const useGetInfo = () => {
+  return useQuery({
+    queryKey: ["Info"],
+    queryFn: async () => {
+      const response = await axiosAuthInstance.get("/user/info");
+      return response.data;
     },
   });
 };

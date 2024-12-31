@@ -1,3 +1,4 @@
+"use client";
 import { ChevronUp, Home, Settings, User, User2 } from "lucide-react";
 import {
   Sidebar,
@@ -17,8 +18,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
+import { useLogout } from "@/hooks/logout";
 
-// Menu items.
 const items = [
   {
     title: "Home",
@@ -38,6 +39,7 @@ const items = [
 ];
 
 export function AppSidebar() {
+  const logout = useLogout();
   return (
     <Sidebar>
       <SidebarHeader>
@@ -73,7 +75,7 @@ export function AppSidebar() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton>
-                  <User2 /> Username
+                  <User2 /> Super Admin
                   <ChevronUp className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
@@ -82,13 +84,9 @@ export function AppSidebar() {
                 className="w-[--radix-popper-anchor-width]"
               >
                 <DropdownMenuItem>
-                  <span>Account</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Billing</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Sign out</span>
+                  <span className="w-full cursor-pointer" onClick={logout}>
+                    Logout
+                  </span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

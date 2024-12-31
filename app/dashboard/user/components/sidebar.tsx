@@ -25,6 +25,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
+import { useLogout } from "@/hooks/logout";
 
 // Menu items.
 const items = [
@@ -52,6 +53,7 @@ const items = [
 ];
 
 export function AppSidebar() {
+  const logout = useLogout();
   return (
     <Sidebar>
       <SidebarHeader>
@@ -96,13 +98,7 @@ export function AppSidebar() {
                 className="w-[--radix-popper-anchor-width]"
               >
                 <DropdownMenuItem>
-                  <span>Account</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Billing</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Sign out</span>
+                  <span onClick={logout}>Logout</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
