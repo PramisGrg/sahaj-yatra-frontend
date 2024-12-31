@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { axiosAuthInstance } from "../axios/axios";
-import { TRegisterBusSchema } from "@/app/(dashboard)/dashboard/busowner/components/add-bus";
+import { TRegisterBusSchema } from "@/app/dashboard/busowner/components/add-bus";
 import { useQueryClient } from "@tanstack/react-query";
 
 export const UseGetBus = () => {
