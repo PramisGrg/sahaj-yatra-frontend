@@ -94,28 +94,19 @@ const LogInDropdown = () => {
           <div className="flex flex-col p-4 space-y-2 w-40">
             <Link
               className="hover:bg-accent hover:text-accent-foreground p-1 rounded-sm"
-              href={{
-                pathname: "/login",
-                query: { userType: "User" },
-              }}
+              href={"/user/login"}
             >
               As User
             </Link>
             <Link
               className="hover:bg-accent hover:text-accent-foreground p-1 rounded-sm"
-              href={{
-                pathname: "/login",
-                query: { userType: "Bus Owner" },
-              }}
+              href={"/busowner/login"}
             >
               As Busowner
             </Link>
             <Link
               className="hover:bg-accent hover:text-accent-foreground p-1 rounded-sm"
-              href={{
-                pathname: "/login",
-                query: { userType: "Super Admin" },
-              }}
+              href={"/superadmin/login"}
             >
               As Superadmin
             </Link>

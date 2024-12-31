@@ -21,3 +21,8 @@ export const loginSchema = z.object({
   phoneNumber: z.string().min(3, { message: "enter a valid phone number" }),
   password: z.string().min(3, { message: "enter a valid password" }),
 });
+
+export const superadminLoginSchema = z.object({
+  email: z.string().email({ message: "enter a valid phone number" }),
+  password: z.string().min(3, { message: "enter a valid password" }),
+});

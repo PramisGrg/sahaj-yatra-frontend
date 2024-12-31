@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { axiosAuthInstance } from "@/services/axios/axios";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import khaltiPicture from "@/public/images/khalti.jpg";
+import khaltiPicture from "@/public/images/khalti-removebg-preview.png";
 import Image from "next/image";
 import { Label } from "@/components/ui/label";
 
@@ -69,37 +69,33 @@ const Payment = () => {
   };
 
   return (
-    <section className="space-y-4">
-      <header className="flex flex-col items-center space-y-4">
-        <h1 className="font-bold">Payment Method</h1>
-        <Image
-          height={1000}
-          width={1000}
-          src={khaltiPicture}
-          alt="Khalti picture"
-          className="w-40 h-36 rounded-md"
-        />
-      </header>
-      <form>
-        <fieldset className="space-y-4 w-1/2 mx-auto">
-          <div>
+    <section>
+      <h1 className="font-bold">Payment Method</h1>
+      <h3 className="text-gray-400 text-sm">Pay Via Khalti</h3>
+      <div className="flex">
+        <div className="w-1/2">
+          <Image
+            height={1000}
+            width={1000}
+            src={khaltiPicture}
+            alt="Khalti picture"
+            className="w-40 h-36 rounded-md"
+          />
+        </div>
+        <form className="w-1/2 space-y-3">
+          <div className="space-y-2">
             <Label>Name</Label>
             <Input placeholder="Enter name" />
           </div>
-          <div>
+          <div className="space-y-2">
             <Label>Amount</Label>
             <Input onChange={handleAmountChange} placeholder="Enter amount" />
           </div>
-        </fieldset>
-        <Button
-          className="w-1/2 mx-auto block mt-4"
-          type="submit"
-          onClick={btnOnClick}
-          id="payment-button"
-        >
-          Pay with Khalti
-        </Button>
-      </form>
+          <Button type="submit" onClick={btnOnClick} id="payment-button">
+            Pay with Khalti
+          </Button>
+        </form>
+      </div>
     </section>
   );
 };

@@ -1,11 +1,10 @@
 import {
-  Calendar,
   ChevronUp,
+  MapPin,
   Home,
-  Inbox,
-  Search,
   Settings,
   User2,
+  BusFront,
 } from "lucide-react";
 
 import {
@@ -31,23 +30,19 @@ import Link from "next/link";
 const items = [
   {
     title: "Home",
-    url: "#",
+    url: "/dashboard/busOwner",
     icon: Home,
   },
   {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
+    title: "Location",
+    url: "/dashboard/busOwner/location",
+    icon: MapPin,
   },
+
   {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
+    title: "Bus",
+    url: "/dashboard/busOwner/bus",
+    icon: BusFront,
   },
   {
     title: "Settings",
