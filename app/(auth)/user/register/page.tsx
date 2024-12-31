@@ -26,14 +26,13 @@ const Page = () => {
   });
 
   const registerUser = useRegisterUser();
-
   const router = useRouter();
 
   const onSubmit = (values: TregisterUserSchema) => {
     registerUser.mutate(values, {
       onSuccess: (data) => {
         toast.success(data.message);
-        router.push(`/login?${new URLSearchParams({ userType: "User" })}`);
+        router.push("/user/login");
       },
       onError: (error) => {
         if (error instanceof AxiosError) {

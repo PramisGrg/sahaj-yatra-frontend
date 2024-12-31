@@ -1,13 +1,4 @@
-import {
-  Calendar,
-  ChevronUp,
-  Home,
-  Inbox,
-  Search,
-  Settings,
-  User2,
-} from "lucide-react";
-
+import { ChevronUp, Home, Settings, User, User2 } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -31,23 +22,13 @@ import Link from "next/link";
 const items = [
   {
     title: "Home",
-    url: "#",
+    url: "/dashboard/superadmin",
     icon: Home,
   },
   {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
+    title: "User",
+    url: "/dashboard/superadmin/user",
+    icon: User,
   },
   {
     title: "Settings",
