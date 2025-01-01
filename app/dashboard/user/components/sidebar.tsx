@@ -27,6 +27,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { useLogout } from "@/hooks/logout";
+import { useGetInfo } from "@/services/tanstack-queries/auth-queries";
+import { useUserIdStore } from "@/store/token-store";
+import { useEffect } from "react";
 
 // Menu items.
 const items = [
@@ -55,6 +58,16 @@ const items = [
 
 export function AppSidebar() {
   const logout = useLogout();
+  const { data: userInfo } = useGetInfo();
+  const userInfoData = userInfo?.data;
+  const setUserId = useUserIdStore((state) => state.setUserId);
+
+  useEffect(() => {
+    if (userInfoData?._id) {
+      setUserId(userInfoData?._id);
+    }
+  }, [setUserId, userInfoData?._id]);
+
   return (
     <Sidebar>
       <SidebarHeader>

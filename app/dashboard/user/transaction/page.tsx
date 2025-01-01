@@ -1,10 +1,18 @@
+"use client";
 import React from "react";
+import { TransactionTable } from "../components/transaction-table";
+import { transactioncolumns } from "../components/transaction-column";
+import { useGetTransaction } from "@/services/tanstack-queries/transcation-query";
+import MaxWidthContainer from "@/components/layouts/max-width-container";
 
 const Page = () => {
+  const { data: transaction } = useGetTransaction();
+  const transactionData = transaction?.data || [];
+
   return (
-    <div>
-      <h1>This is transaction</h1>
-    </div>
+    <MaxWidthContainer className="py-10">
+      <TransactionTable columns={transactioncolumns} data={transactionData} />
+    </MaxWidthContainer>
   );
 };
 

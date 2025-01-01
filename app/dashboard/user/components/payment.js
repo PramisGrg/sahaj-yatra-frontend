@@ -8,10 +8,11 @@ import { Button } from "@/components/ui/button";
 import khaltiPicture from "@/public/images/khalti-removebg-preview.png";
 import Image from "next/image";
 import { Label } from "@/components/ui/label";
+import { useUserIdStore } from "@/store/token-store";
 
 const Payment = () => {
+  const userId = useUserIdStore((state) => state.userId);
   const [ampunt, setAmount] = useState(0);
-  const userId = 123;
   const config = {
     publicKey: "test_public_key_77bac81b32ed4e95b995bfbe502a3ab8",
     productIdentity: "1234567890",
@@ -19,13 +20,13 @@ const Payment = () => {
     productUrl: "http://gameofthrones.com/buy/Dragons",
     eventHandler: {
       onSuccess: (payload) => {
-        console.log(userId);
         const payloadWithUserId = { ...payload, userId };
         axiosAuthInstance
           .post("/transaction/verify-payment/", payloadWithUserId)
           .then((response) => {
+            toast.success("Payment Successfull");
             console.log(response);
-            console.log(response?.status);
+            setAmount(0);
           })
           .catch((error) => {
             toast.error(error?.message);
@@ -56,7 +57,6 @@ const Payment = () => {
   }, [userId]);
 
   const btnOnClick = (e) => {
-    console.log(userId);
     e.preventDefault();
     if (typeof window !== "undefined") {
       const checkout = new KhaltiCheckout(config);
@@ -83,10 +83,6 @@ const Payment = () => {
           />
         </div>
         <form className="w-1/2 space-y-3">
-          <div className="space-y-2">
-            <Label>Name</Label>
-            <Input placeholder="Enter name" />
-          </div>
           <div className="space-y-2">
             <Label>Amount</Label>
             <Input onChange={handleAmountChange} placeholder="Enter amount" />
