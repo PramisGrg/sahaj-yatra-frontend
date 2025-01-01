@@ -1,3 +1,4 @@
+"use client";
 import {
   ChevronUp,
   MapPin,
@@ -6,7 +7,6 @@ import {
   User2,
   BusFront,
 } from "lucide-react";
-
 import {
   Sidebar,
   SidebarContent,
@@ -26,23 +26,23 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { useLogout } from "@/hooks/logout";
+import { useGetInfo } from "@/services/tanstack-queries/auth-queries";
 
-// Menu items.
 const items = [
   {
     title: "Home",
-    url: "/dashboard/busOwner",
+    url: "/dashboard/busowner",
     icon: Home,
   },
   {
     title: "Location",
-    url: "/dashboard/busOwner/location",
+    url: "/dashboard/busowner/location",
     icon: MapPin,
   },
 
   {
     title: "Bus",
-    url: "/dashboard/busOwner/bus",
+    url: "/dashboard/busowner/bus",
     icon: BusFront,
   },
   {
@@ -54,6 +54,9 @@ const items = [
 
 export function AppSidebar() {
   const logout = useLogout();
+  const { data: info } = useGetInfo();
+  const infoData = info?.data;
+
   return (
     <Sidebar>
       <SidebarHeader>
@@ -89,7 +92,7 @@ export function AppSidebar() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton>
-                  <User2 /> Username
+                  <User2 /> {infoData?.username || "Username"}
                   <ChevronUp className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>

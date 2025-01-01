@@ -1,10 +1,13 @@
+import MaxWidthContainer from "@/components/layouts/max-width-container";
 import React from "react";
+import { BusChart, Component } from "./components/dashboard-charts";
 
 const Page = () => {
   return (
-    <div>
-      <h1>This is bus owner dashboard</h1>
-    </div>
+    <MaxWidthContainer className="space-y-10">
+      <BusChart />
+      <Component />
+    </MaxWidthContainer>
   );
 };
 

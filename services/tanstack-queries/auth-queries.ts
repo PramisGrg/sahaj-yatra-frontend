@@ -6,6 +6,7 @@ import { TSuperadminLoginSchema } from "@/app/(auth)/superadmin/login/page";
 import { TLoginSchema } from "@/app/(auth)/user/login/page";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
+import { UserInfo } from "@/types/types";
 
 export const useRegisterUser = () => {
   return useMutation({
@@ -89,10 +90,10 @@ export const useLoginSuperAdmin = () => {
 };
 
 export const useGetInfo = () => {
-  return useQuery({
+  return useQuery<UserInfo>({
     queryKey: ["Info"],
     queryFn: async () => {
-      const response = await axiosAuthInstance.get("/user/info");
+      const response = await axiosAuthInstance.get<UserInfo>("/user/info");
       return response.data;
     },
   });

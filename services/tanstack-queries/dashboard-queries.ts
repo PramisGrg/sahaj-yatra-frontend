@@ -9,12 +9,40 @@ export interface TSuperAdminDashbaordData {
   };
 }
 
+interface TBusOwnerDashboardData {
+  data: {
+    graphData: Array<{
+      busName: string;
+      sale: {
+        daily: string;
+        monthly: string;
+        yearly: string;
+      };
+    }>;
+    totalDailySale: string;
+    totalMonthlySale: string;
+    totalYearlySale: string;
+  };
+}
+
 export const useGetSuperAdminDashboardData = () => {
   return useQuery<TSuperAdminDashbaordData>({
     queryKey: ["AdminDashboard"],
     queryFn: async () => {
       const response = await axiosAuthInstance.get<TSuperAdminDashbaordData>(
         "/dashboard/superadmin"
+      );
+      return response.data;
+    },
+  });
+};
+
+export const useGetBusownerDashboardData = () => {
+  return useQuery<TBusOwnerDashboardData>({
+    queryKey: ["BusOwnerDashboard"],
+    queryFn: async () => {
+      const response = await axiosAuthInstance.get<TBusOwnerDashboardData>(
+        "/dashboard/busowner"
       );
       return response.data;
     },
