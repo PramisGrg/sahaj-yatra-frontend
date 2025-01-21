@@ -34,7 +34,7 @@ const Page = () => {
     registerBusOwner.mutate(values, {
       onSuccess: (data) => {
         toast.success(data.message);
-        router.push(`/login?${new URLSearchParams({ userType: "Bus Owner" })}`);
+        router.push("/busowner/login");
       },
       onError: (error) => {
         if (error instanceof AxiosError) {

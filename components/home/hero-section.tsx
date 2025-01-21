@@ -2,8 +2,11 @@
 import React from "react";
 import { BackgroundLines } from "../ui/background-lines";
 import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
 const HeroSection = () => {
+  const router = useRouter();
+
   return (
     <div>
       <BackgroundLines className="flex items-center justify-center w-full flex-col px-4">
@@ -18,7 +21,12 @@ const HeroSection = () => {
             <p className="max-w-xl mx-auto text-lg text-neutral-700 dark:text-neutral-400 text-center">
               यात्राको सहयात्री हाम्रो सहजयात्री
             </p>
-            <Button className="px-8 py-4 rounded-md bg-primary text-white font-bold transition duration-200 hover:bg-white hover:text-black border-2 border-transparent hover:border-primary">
+            <Button
+              onClick={() => {
+                router.push("/user/register");
+              }}
+              className="px-8 py-4 rounded-md bg-primary text-white font-bold transition duration-200 hover:bg-white hover:text-black border-2 border-transparent hover:border-primary"
+            >
               Get Started
             </Button>
           </div>
