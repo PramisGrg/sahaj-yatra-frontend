@@ -32,6 +32,13 @@ Bus owners can :
 ## Demo
 [![Watch the video](https://img.youtube.com/vi/lcF7LoMmK7k/0.jpg)](https://youtu.be/lcF7LoMmK7k?si=x_8mSC4avcGW5HiC)
 
-## 
+## Block Diagram 
+
+<img width="1000" alt="Screenshot 2025-01-21 at 19 58 52" src="https://github.com/user-attachments/assets/89441ca2-c12e-4ab7-ae96-f3377b1ee00b" />
+
+## System Diagram
+
+<img width="1000" alt="Screenshot 2025-01-21 at 19 59 11" src="https://github.com/user-attachments/assets/6aeafb0d-08ba-4665-b274-c328bef55558" />
+
 
 
